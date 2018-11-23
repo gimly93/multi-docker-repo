@@ -8,14 +8,14 @@ script:
   - docker run lukashevich93/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t lukashevich93/multi-frontend ./client
+  - docker build -t lukashevich93/multi-client ./client
   - docker build -t lukashevich93/multi-nginx ./nginx
   - docker build -t lukashevich93/multi-server ./server
   - docker build -t lukashevich93/multi-worker ./worker
 #Login to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # take and push the images
-  - docker push lukashevich93/multi-frontend
+  - docker push lukashevich93/multi-client
   - docker push lukashevich93/multi-nginx
   - docker push lukashevich93/multi-server
   - docker push lukashevich93/multi-worker
